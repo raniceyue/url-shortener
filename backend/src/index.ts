@@ -1,13 +1,7 @@
-import express from 'express'
-// import compression from 'compression'
+import app from "./server"
 
-const app = express()
-const PORT = 8080
+const port = Number(process.env.PORT || 9000)
 
-app.listen(PORT, () => {
-  console.log('Server started at http://localhost:' + PORT)
-})
-
-app.get('/', (req: any, res: any) => {
-  res.send('Hello!')
+app.listen(port, () => {
+  console.log('Server is listening to http://localhost:' + port)
 })
