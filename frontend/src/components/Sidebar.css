@@ -1,0 +1,25 @@
+
+.logo {
+  color: #bdbdbd;
+  margin-left: .5em!important;
+  margin-bottom: .5em!important;
+  font-weight: 500!important;
+  text-align: left;
+}
+
+.sidebar {
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+    width: 100%;
+  }
+}

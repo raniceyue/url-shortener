@@ -1,0 +1,38 @@
+
+.link-card {
+  position: relative;
+  margin: 1em;
+  background: #fafafa!important;
+}
+
+.btn-delete {
+  position: absolute!important;
+  right: 0;
+}
+
+.btn-copy {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-weight: 700;
+  line-height: 1.75;
+  padding: 6px 8px;
+  margin-left: 1em;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  letter-spacing: 0.02857em;
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.btn-copy svg {
+  margin-right: .5em;
+}
+
+.btn-copy:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.04);
+}
