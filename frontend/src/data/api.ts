@@ -16,7 +16,7 @@ export interface Url {
  * @returns Promise<any> - API response data
  */
 export async function createShort(data: Url): Promise<any> {
-  await axios
+  const res = await axios
     .post(BASEURL, data)
     .then((res: any) => {
       return res
@@ -24,6 +24,7 @@ export async function createShort(data: Url): Promise<any> {
     .catch((error) => {
       return error.response
     })
+  return res
 }
 
 /**
@@ -32,7 +33,7 @@ export async function createShort(data: Url): Promise<any> {
  * @returns Promise<any> - API response data
  */
 export async function getLong(short: string): Promise<any> {
-  await axios
+  const res = await axios
     .get(BASEURL + short)
     .then((res: any) => {
       return res
@@ -40,4 +41,5 @@ export async function getLong(short: string): Promise<any> {
     .catch((error: any) => {
       return error.response
     })
+  return res
 }
