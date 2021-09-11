@@ -5,14 +5,12 @@ const urlsRouter = Router()
 
 urlsRouter.route('/')
   .get((req: any, res: any) => {
-    res.send('fart')
+    res.status(200)
+      .send('This is the endpoint for creating new short links')
   })
   .post(controller.createShort)
 
-urlsRouter.route('/:long_url')
-  .get(controller.generateShortcode)
-
-// urlsRouter.route('/:short_url')
-//   .delete(controller.deleteShort)
+urlsRouter.route('/:short')
+  .get(controller.getLong)
 
 export default urlsRouter

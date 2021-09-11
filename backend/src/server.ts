@@ -9,6 +9,8 @@ import { IUrl, Url } from '@components/urls/model'
 dotenv.config()
 
 const app = express()
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 /**
  * Connect tp db
@@ -30,7 +32,7 @@ app.use('/api', BaseRouter)
 // Redirect short links
 app.get('/:short', (req: any, res: any) => {
   getLong(req.params.short)
-    .then(long => { res.redirect(long) })
+    .then(long => { res.status(200).redirect(long) })
     .catch(e => {
       res.status(404).send('Unable to find link: ' + e)
     })
