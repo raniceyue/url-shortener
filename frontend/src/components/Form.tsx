@@ -43,7 +43,7 @@ function Form(props: { handleUpdateData: any }): JSX.Element {
           <Typography variant="h6">
             Shorten a link
           </Typography>
-          <div>
+          <div className="form-fields">
             <TextField 
               required
               placeholder="Link Name"
@@ -53,8 +53,6 @@ function Form(props: { handleUpdateData: any }): JSX.Element {
               InputLabelProps={{
                 shrink: true,
               }} />
-          </div>
-          <div>
             <TextField
               required
               error={urlFieldError}
@@ -69,9 +67,9 @@ function Form(props: { handleUpdateData: any }): JSX.Element {
           </div>
           <Box mt={1}>
             Short link: &nbsp;
-              <Typography variant="caption">
-                {SHORT_BASEURL + linkHash}
-              </Typography>
+            <Typography variant="caption">
+              {SHORT_BASEURL + linkHash}
+            </Typography>
           </Box>
           <Box my={2} display="flex" alignContent="right">
             <Button

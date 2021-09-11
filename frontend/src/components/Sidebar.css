@@ -10,12 +10,19 @@
 .sidebar {
   display: flex;
   position: fixed;
+  width: calc(33.333333% - 2%);
   height: 100vh;
   flex-wrap: wrap;
   align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1280px) {
+  .sidebar {
+    width: calc(41.666667% - 2%);
+  }
+}
+
+@media (max-width: 960px) {
   .sidebar {
     width: 100%;
     position: static;

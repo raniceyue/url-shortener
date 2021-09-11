@@ -5,9 +5,47 @@
   background-color: #f5f5f7!important;
 }
 
-@media (max-width: 1024px) {
+@media(max-width: 1280px) {
+  .form {
+    padding: 2em 3em 2em 4em;
+  }
+}
+
+@media (max-width: 960px) {
   .form {
     padding: 2em 2em;
     margin-bottom: 1em;
+  }
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  max-width: 260px;
+}
+
+@media (max-width: 960px) {
+  .form-fields {
+    flex-direction: row;
+    max-width: unset;
+  }
+
+  .form-fields > * {
+    margin-right: 1em!important;
+  }
+
+  /* Select short link display Box*/
+  .form-fields + * {
+    margin-top: .5em!important;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-fields {
+    flex-direction: column;
+  }
+
+  .form-fields > * {
+    margin-right: unset;
   }
 }

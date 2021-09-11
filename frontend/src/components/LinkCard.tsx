@@ -50,7 +50,9 @@ export default function LinkCard(props: {
           <DeleteIcon color="disabled" />
         </IconButton>
         <CardContent>
-          <Typography variant="h6">{props.link.name}</Typography>
+          <Typography className="truncate" variant="h6">
+            {props.link.name} &nbsp;
+          </Typography>
           <div style={{ display: "flex", alignItems: "center" }}>
             <Tooltip
               open={openCopied}
@@ -69,7 +71,12 @@ export default function LinkCard(props: {
               <FileCopyIcon color="disabled" fontSize="inherit"/>Copy
             </button>
           </div>
-          <Typography variant="body2">{props.link.long}</Typography>
+          <Typography
+            className="truncate"
+            variant="body2"
+          >
+            {props.link.long}
+          </Typography>
         </CardContent>
       </Paper>
     </Collapse>

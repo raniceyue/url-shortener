@@ -83,15 +83,12 @@ function App(): JSX.Element {
         spacing-lg={1}
         alignItems="stretch"
       >
-        <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+        <Grid item xs={12} sm={12} md={5} lg={4} xl={4}>
           <Sidebar handleUpdateData={handleUpdateData} />
         </Grid>
-        <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
+        <Grid item xs={12} sm={12} md={7} lg={8} xl={8}>
           <Box 
             mr={{ xs: 0, md: 0, lg: 2, xl: 2}}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
           >
             <LinksList
               handleDeleteLink={handleDeleteLink}
