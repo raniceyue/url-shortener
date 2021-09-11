@@ -28,22 +28,21 @@ function App(): JSX.Element {
     removeFromLocalStorage(link)
   }
 
-  /**
-   * Response -> short, long
-   * user links -> name, short, long
-   * local links -> name, short
-   */
   useEffect(() => {
     let localLinks: ILocalLink[] = getLocalStorageLinks()
+
     const getLongLinks = async() => {
       let fetchedData: IUserLink[] = []
-      let requests = localLinks.map((link) => {
+
+      // Create array of promises that fetch long links
+      let requests: Promise<any>[] = localLinks.map((link) => {
         return getLong(link.short)
       })
+
       return Promise.all(requests).then((res: any) => {
         res.forEach((res: any) => {
           if (res) {
-            // Find name of link through local links
+            // Find name of link through local links based on hash
             let localLink = localLinks.find((l) => l.short === res.data.data.short)
             let name = localLink ? localLink.name : ''
             let link: IUserLink = {
@@ -85,9 +84,7 @@ function App(): JSX.Element {
           <Sidebar handleUpdateData={handleUpdateData} />
         </Grid>
         <Grid item xs={12} sm={12} md={7} lg={8} xl={8}>
-          <Box 
-            mr={{ xs: 0, md: 0, lg: 2, xl: 2}}
-          >
+          <Box mr={{ xs: 0, md: 0, lg: 2, xl: 2}}>
             <LinksList
               handleDeleteLink={handleDeleteLink}
               data={data}

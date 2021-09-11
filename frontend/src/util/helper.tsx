@@ -1,7 +1,7 @@
 import createHash from 'create-hash'
 
 /**
- * Interface for storing user links in local storage
+ * Interface for storing user links in local storage.
  * Links in local storage do not store the long link to save space
  */
 export interface ILocalLink {
@@ -10,8 +10,8 @@ export interface ILocalLink {
 }
 
 /**
- * Interface for displaying user links
- * User links have a name/label defined set by the user
+ * Interface for displaying user links.
+ * User links have an additional name/label defined set by the user
  */
 export interface IUserLink extends ILocalLink {
   name: string;
@@ -22,7 +22,7 @@ export interface IUserLink extends ILocalLink {
 /**
  * Function to generate hash to be used for short link
  * @param url - URL to generate hash for
- * @returns First 8 characters of SHA256 hash generated
+ * @returns First 8 characters of the SHA256 hash generated from the long link
  */
 export function hash(url: string): string {
   return createHash('sha256')
@@ -32,8 +32,8 @@ export function hash(url: string): string {
 }
 
 /**
- * Converts short user links from local storage from string into array of `LocalLink`
- * @returns Array of short user links from local storage
+ * Converts short local links from local storage from string into array of `LocalLink`
+ * @returns `ILocalLink[]` of short local links from local storage
  */
 export function getLocalStorageLinks(): ILocalLink[] {
   let localLinks: string | null = localStorage.getItem('links')
@@ -56,8 +56,8 @@ export function updateLocalStorageLinks(link: ILocalLink): void {
 }
 
 /**
- * Removes link to local storage
- * @param link - Link to delete from local storage
+ * Removes link from local storage
+ * @param link to delete from local storage
  */
 export function removeFromLocalStorage(link: ILocalLink): void {
   let localLinks: ILocalLink[] = getLocalStorageLinks()
@@ -66,9 +66,9 @@ export function removeFromLocalStorage(link: ILocalLink): void {
 }
 
 /**
- * Check if link already exists in local storage
+ * Check if a link already exists in local storage
  * @param link - Link to check for
- * @returns boolean - true or false depending on if link is in local storage
+ * @returns `true` or `false` depending on if link is in local storage
  */
 export function findLinkFromLocalStorage(link: ILocalLink): boolean {
   let localLinks: ILocalLink[] = getLocalStorageLinks()
