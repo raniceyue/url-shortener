@@ -11,7 +11,7 @@ const schema = new Schema<IUrl>({
   long: { type: String, required: true },
   createdAt: {
     type: Date,
-    expires: '30d',
+    expires: '43200m',
     default: new Date()
   }
 }, { collection: 'urls' })

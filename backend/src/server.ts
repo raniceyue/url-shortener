@@ -3,12 +3,14 @@ import * as dotenv from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
 import BaseRouter from '@api/routes'
+import cors from 'cors'
 
 import { IUrl, Url } from '@components/urls/model'
 
 dotenv.config()
 
 const app = express()
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 

@@ -23,7 +23,6 @@ export async function createShort(req: any, res: any) {
       })
     } else {
       // Update the expiry date of the shortlink if the link already exists
-      
       doc.createdAt = new Date()
 
       await doc.save()
@@ -41,7 +40,6 @@ export async function createShort(req: any, res: any) {
       isSuccess: false,
       error: error
     })
-    console.log(error)
   }
 }
 
@@ -49,17 +47,17 @@ export async function getLong(req: any, res: any) {
   try {
     let doc = await Url.findOne({ short: req.params.short })
 
-    if (!doc) {
-      res.status(404).send({
-        message: 'We could not find the long link for this short link',
-        isSuccess: false,
-        data: req.body.short
-      })
-    } else {
+    if (doc) {
       res.status(200).send({
         message: 'Successfuly found the long link for this short',
         isSuccess: true,
         data: doc
+      })
+    } else {
+      res.status(404).send({
+        message: 'We could not find the long link for this short link',
+        isSuccess: false,
+        data: req.body.short
       })
     }
 
@@ -69,6 +67,5 @@ export async function getLong(req: any, res: any) {
       isSuccess: false,
       error: error
     })
-    console.log(error)
   }
 }
