@@ -51,8 +51,8 @@ export function getLocalStorageLinks(): ILocalLink[] {
  */
 export function updateLocalStorageLinks(link: ILocalLink): void {
   let localLinks: ILocalLink[] = getLocalStorageLinks()
-  localLinks.push({ name: link.name, short: link.short })
-  localStorage.setItem('links', JSON.stringify(localLinks))
+  let updatedLinks: ILocalLink[] = localLinks.concat([{ name: link.name, short: link.short }], localLinks)
+  localStorage.setItem('links', JSON.stringify(updatedLinks))
 }
 
 /**
@@ -63,4 +63,15 @@ export function removeFromLocalStorage(link: ILocalLink): void {
   let localLinks: ILocalLink[] = getLocalStorageLinks()
   let updatedLinks: ILocalLink[] = localLinks.filter(l => JSON.stringify(l) !== JSON.stringify(link))
   localStorage.setItem('links', JSON.stringify(updatedLinks))
+}
+
+/**
+ * Check if link already exists in local storage
+ * @param link - Link to check for
+ * @returns boolean - true or false depending on if link is in local storage
+ */
+export function findLinkFromLocalStorage(link: ILocalLink): boolean {
+  let localLinks: ILocalLink[] = getLocalStorageLinks()
+  let matchedLinks: ILocalLink[] = localLinks.filter(l => JSON.stringify(l) === JSON.stringify(link))
+  return matchedLinks.length !== 0
 }

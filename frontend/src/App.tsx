@@ -17,16 +17,14 @@ function App(): JSX.Element {
   const [data, setData] = useState<IUserLink[]>([]);
 
   function handleUpdateData(link: IUserLink): void {
-    setData([...data, link])
+    setData([link, ...data])
     delete link.long
     updateLocalStorageLinks(link)
   }
 
   function handleDeleteLink(link: IUserLink): void {
-    console.log('link to delete at app level: ' + JSON.stringify(link))
     setData(data.filter(l => l !== link))
     delete link.long
-    console.log('link to delete at app level after removing long: ' + JSON.stringify(link))
     removeFromLocalStorage(link)
   }
 
