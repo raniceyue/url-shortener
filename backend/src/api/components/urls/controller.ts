@@ -57,7 +57,9 @@ export async function getLong(req: any, res: any) {
       res.status(404).send({
         message: 'We could not find the long link for this short link',
         isSuccess: false,
-        data: req.body.short
+        data: {
+          short: req.params.short
+        }
       })
     }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, Grid, Toolbar } from '@material-ui/core'
+import { Box, CircularProgress, Grid, Toolbar } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/styles'
 
 import { getLong } from './data/api'
@@ -14,7 +14,8 @@ import theme from './styles/theme'
 import './App.css';
 
 function App(): JSX.Element {
-  const [data, setData] = useState<IUserLink[]>([]);
+  const [data, setData] = useState<IUserLink[]>([])
+  const [loading, setLoading] = useState(true)
 
   function handleUpdateData(link: IUserLink): void {
     setData([link, ...data])
@@ -32,6 +33,7 @@ function App(): JSX.Element {
     let localLinks: ILocalLink[] = getLocalStorageLinks()
 
     const getLongLinks = async() => {
+      setLoading(true)
       let fetchedData: IUserLink[] = []
 
       // Create array of promises that fetch long links
@@ -41,6 +43,7 @@ function App(): JSX.Element {
 
       return Promise.all(requests).then((res: any) => {
         res.forEach((res: any) => {
+          console.log(res.data)
           if (res) {
             // Find name of link through local links based on hash
             let localLink = localLinks.find((l) => l.short === res.data.data.short)
@@ -48,10 +51,11 @@ function App(): JSX.Element {
             let link: IUserLink = {
               name: name,
               short: res.data.data.short,
-              long: res.data.data.long
+              long: ''
             }
             switch(res.status) {
               case 200:
+                link.long = res.data.data.long
                 fetchedData.push(link)
                 break
               case 404:
@@ -66,6 +70,7 @@ function App(): JSX.Element {
           }
         })
         setData(fetchedData)
+        setLoading(false)
       })
     }
     getLongLinks()
@@ -85,10 +90,10 @@ function App(): JSX.Element {
         </Grid>
         <Grid item xs={12} sm={12} md={7} lg={8} xl={8}>
           <Box mr={{ xs: 0, md: 0, lg: 2, xl: 2}}>
-            <LinksList
-              handleDeleteLink={handleDeleteLink}
-              data={data}
-            />
+            { loading 
+              ? (<CircularProgress />)
+              : (<LinksList handleDeleteLink={handleDeleteLink} data={data} />)
+            }
           </Box>
         </Grid>
       </Grid>

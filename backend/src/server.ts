@@ -4,6 +4,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import BaseRouter from '@api/routes'
 import cors from 'cors'
+import path from 'path'
 
 import { IUrl, Url } from '@components/urls/model'
 
@@ -36,7 +37,7 @@ app.get('/:short', (req: any, res: any) => {
   getLong(req.params.short)
     .then(long => { res.status(200).redirect(long) })
     .catch(e => {
-      res.status(404).send('Unable to find link: ' + e)
+      res.status(404).sendFile(path.join(__dirname, '../static', '404.html'))
     })
 })
 
