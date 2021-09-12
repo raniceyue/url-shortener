@@ -2,7 +2,7 @@
   "name": "url-shortener",
   "version": "1.0.0",
   "description": "API for url shortener",
-  "maine": "index.ts",
+  "main": "index.ts",
   "scripts": {
     "start": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
     "dev": "nodemon"
