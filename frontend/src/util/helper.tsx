@@ -51,8 +51,8 @@ export function getLocalStorageLinks(): ILocalLink[] {
  */
 export function updateLocalStorageLinks(link: ILocalLink): void {
   let localLinks: ILocalLink[] = getLocalStorageLinks()
-  let updatedLinks: ILocalLink[] = localLinks.concat([{ name: link.name, short: link.short }], localLinks)
-  localStorage.setItem('links', JSON.stringify(updatedLinks))
+  localLinks.unshift({ name: link.name, short: link.short })
+  localStorage.setItem('links', JSON.stringify(localLinks))
 }
 
 /**
