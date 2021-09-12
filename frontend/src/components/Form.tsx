@@ -36,29 +36,37 @@ function Form(props: { handleUpdateData: any }): JSX.Element {
       short: link.short
     })
 
-    if (linkExists) {
+    if (urlFieldError) {
       setDialog({
         open: true,
-        title: 'Link already exists',
-        content: 'You have already created this link'
+        title: 'Invalid URL!',
+        content: 'You have entered an invalid URL. Please enter a valid URL e.g. https://google.com'
       })
     } else {
-      let res: any = await createShort({
-        short: link.short,
-        long: link.long!
-      })
+      if (linkExists) {
+        setDialog({
+          open: true,
+          title: 'Link already exists',
+          content: 'You have already created this link'
+        })
+      } else {
+        let res: any = await createShort({
+          short: link.short,
+          long: link.long!
+        })
 
-      let errorDialog: any = {
-        open: true,
-        title: 'Sorry :(',
-        content: 'An error occured and we were not able to create the short link.'
+        let errorDialog: any = {
+          open: true,
+          title: 'Sorry :(',
+          content: 'An error occured and we were not able to create the short link.'
+        }
+
+        res
+        ? res.status === 200 
+          ? props.handleUpdateData(link)
+            : setDialog(errorDialog)
+        : setDialog(errorDialog)
       }
-
-      res
-      ? res.status === 200 
-        ? props.handleUpdateData(link)
-          : setDialog(errorDialog)
-      : setDialog(errorDialog)
     }
   }
 
