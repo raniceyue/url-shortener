@@ -6,6 +6,7 @@ build/
 *.log
 .DS_Store
 .env
+.env.copy
 .env.local
 .env.development.local
 .env.test.local

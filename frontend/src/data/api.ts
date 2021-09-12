@@ -1,9 +1,9 @@
 import axios from 'axios'
 import dotenv from 'dotenv'
 
-dotenv.config()
+import { API_BASEURL } from '../util/global'
 
-const BASEURL = process.env.REACT_APP_LOCAL_BASEURL + 'api/urls/'
+dotenv.config()
 
 export interface Url {
   short: string;
@@ -17,7 +17,7 @@ export interface Url {
  */
 export async function createShort(data: Url): Promise<any> {
   const res = await axios
-    .post(BASEURL, data)
+    .post(API_BASEURL, data)
     .then((res: any) => {
       return res
     })
@@ -34,7 +34,7 @@ export async function createShort(data: Url): Promise<any> {
  */
 export async function getLong(short: string): Promise<any> {
   const res = await axios
-    .get(BASEURL + short)
+    .get(API_BASEURL + short)
     .then((res: any) => {
       return res
     })
