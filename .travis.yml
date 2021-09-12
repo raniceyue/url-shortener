@@ -5,16 +5,16 @@ cache: yarn
 services: mongodb
 before_install:
   - echo ********** DECRYPTING .env FILES **********
-  - cd backend
+  - cd /backend
   - openssl aes-256-cbc -K $KEY -iv $IV -in .env.enc -out .env -d
-  - cd frontend
+  - cd /frontend
   - openssl aes-256-cbc -K $KEY -iv $IV -in .env.enc -out .env -d
 script: 'true'
 jobs:
   include:
   - stage: Deploying backend to Heroku
     before_deploy:
-      - cd ../ && cd backend && echo ********** DEPLOYING BACKEND TO HEROKU **********
+      - cd /backend && echo ********** DEPLOYING BACKEND TO HEROKU **********
     deploy: 
       provider: heroku
       skip_cleanup: true
@@ -23,7 +23,7 @@ jobs:
         secure: "H+QUbZOIdkK/Y+shBOTR/3KYYfZ2cj5/M4/7IPNYRkiphgVmBO/Q9+YgvfPAOegWRLc1b1MZN5/Zk+mZb5CwUo0cEVhQlUiW0WxOeDeG0CDJQVpIS+n1mG19tiWMdDLHClABWwgBI5rAJ76twEJKBDMz1LhUvPss61jMQBsnqx3FHGcvr8Ob1/34f9XSq2Jy75Q3xAGEOpE9Ttzyg2gTp0Ke1YR6ujYgCJSvyu1Pmk6qD3S3W5Zg+4BQ2AHCicxoNQW/KiHwehSY+dYsMDc5vYrMV4wEqlDEEvtN1qidVtEqig1dzNmA/b7lyNEKN3mTthz+Ae4f3PECqM/oPKIL39WuHIJZgj4Jb9117eWxG48CW9lM8PgwZTKlhzRai5Tgy9d6Ksu+HSUs9wt7jgYealEqXpq4r9ZImUENhNpvMcavOyAVikkF6DUXwWPAt/p0vIg1sKkVglZ4ztSPLBWs0gGpK9ikhxzh0YAlwF6455r9nWsQ2HP6VXMFewdk6izgB2k0JZVS9bNHa2c+S68j+P0PAjke6gMJi4B2AYo3AWSg1RqickefvAkK11PzDSvxoLO01DT5C7B4468LWY5w0gOAzFYJxVOC2mEd6MlGyGMxsR+UKIFDrK52rl37oIa6vmIQYQl1Stv2DtkOnb8kGpH/ENAhLaJ3bWdP+PCsx8Y="
   - stage: Deploying frontend to Github Pages
     before_deploy:
-      - cd ../ && cd frontend && echo ********** DEPLYOING FRONTEND TO GH-PAGES **********
+      - cd /frontend && echo ********** DEPLYOING FRONTEND TO GH-PAGES **********
       - yarn build
     deploy:
       provider: pages
