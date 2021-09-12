@@ -29,7 +29,7 @@ jobs:
       provider: pages
       skip_cleanup: true
       github_token: $GITHUB_TOKEN
-      local_dir: frontent/build/
+      local_dir: frontend/build/
       target_branch: gh-pages
       on:
         branch: master
