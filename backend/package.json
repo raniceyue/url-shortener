@@ -1,30 +1,36 @@
 {
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "API for url shortener",
+  "maine": "index.ts",
   "scripts": {
-    "start:dev": "nodemon"
+    "start": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
+    "dev": "nodemon"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raniceyue/url-shortener.git"
+  },
+  "author": "Ranice Tan",
+  "license": "ISC",
   "dependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/mongoose": "^5.11.97",
-    "compression": "^1.7.4",
-    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "create-hash": "^1.2.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongodb": "^4.1.1",
     "mongoose": "^6.0.5",
-    "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
     "tslib": "^2.3.1",
     "typescript": "^4.4.2"
   },
   "devDependencies": {
-    "@types/compression": "^1.7.2",
-    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
     "@types/create-hash": "^1.2.2",
     "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
     "eslint": "^7.32.0",
-    "jest": "^27.1.0",
+    "nodemon": "^2.0.12",
     "tsconfig-paths": "^3.11.0",
     "tscpaths": "^0.0.9"
   }
