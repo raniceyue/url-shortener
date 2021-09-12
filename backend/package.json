@@ -11,6 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/raniceyue/url-shortener.git"
   },
+  "engines": {
+    "node": "12.x",
+    "yarn": "1.x"
+  },
   "author": "Ranice Tan",
   "license": "ISC",
   "dependencies": {
