@@ -1,10 +1,26 @@
 # URL Shortener
+[![Build Status](https://app.travis-ci.com/raniceyue/url-shortener.svg?token=KMaa5sPVDNpzppnHPfJi&branch=master)](https://app.travis-ci.com/raniceyue/url-shortener)
+
 A URL shortener (not really) built using the MERN stack, i.e.
 1. Express + Node for the backend API
 2. MongoDB Atlas for the database (NoSQL, document based)
 3. React for the frontend
 
 Both the frontend and backend are written in Typescript.
+
+## Running this locally
+1. Ensure you're using Node 12
+2. Run `yarn install`
+3. Set up the environment variables by creating `.env` files in the frontend and backend directories
+4. In the root directory, run `yarn dev` to run both the frontend and backend concurrently
+   
+   OR
+
+   `cd backend/ && yarn dev` in one terminal and `cd frontend/ && yarn start` in the other
+
+The backend will be hosted on `localhost:8000`
+
+The frontend will be hosted on `localhost:3000/url-shortener`
 
 ## Features and Implementation
 ### Creating short links
@@ -27,6 +43,8 @@ The short links use the URL of the application's backend (`https://ranice-url-sh
 
 ### Some Reflection
 This implementation of the "sharing" of short links is not very good. The implementatin of only shallow deletion of links is also not very good. Also, storing the user's links in their browser's `localStorage` would mean if they clear all their browser's data, all their links will be gone.
+
+Also, every time the user starts the application, the application has to make an API call to get the corresponding long url of every link stored in the browser's `localStorage` which is not good. 
 
 The ideal implementation would be to create some user authentication system to be able to concretely map users to the links they have created, OR to use cookies to remember users and their links.
 

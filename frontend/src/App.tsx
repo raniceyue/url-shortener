@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, CircularProgress, Grid } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/styles'
 
 import { getLong } from './data/api'
@@ -90,10 +90,11 @@ function App(): JSX.Element {
         </Grid>
         <Grid item xs={12} sm={12} md={7} lg={8} xl={8}>
           <Box mr={{ xs: 0, md: 0, lg: 2, xl: 2}}>
-            { loading 
-              ? (<CircularProgress />)
-              : (<LinksList handleDeleteLink={handleDeleteLink} data={data} />)
-            }
+            <LinksList
+              handleDeleteLink={handleDeleteLink}
+              loading={loading}
+              data={data}
+            />
           </Box>
         </Grid>
       </Grid>
