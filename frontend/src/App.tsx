@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, CircularProgress, Grid, Toolbar } from '@material-ui/core'
+import { Box, CircularProgress, Grid } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/styles'
 
 import { getLong } from './data/api'
@@ -78,7 +78,7 @@ function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <Toolbar />
+      <Footer />
       <Grid
         container
         spacing-sm={0}
@@ -97,7 +97,6 @@ function App(): JSX.Element {
           </Box>
         </Grid>
       </Grid>
-      <Footer />
     </ThemeProvider>
   );
 }

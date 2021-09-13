@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IconButton, Link, Typography } from '@material-ui/core'
 import { Paper, CardContent } from '@material-ui/core'
-import { Collapse, Tooltip } from '@material-ui/core'
+import { Collapse } from '@material-ui/core'
 
 import DeleteIcon from '@material-ui/icons/Delete'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
@@ -13,19 +13,22 @@ import './LinkCard.css';
 export default function LinkCard(props: {
   handleDeleteLink: any,
   link: IUserLink
-}): JSX.Element | null {
+}): JSX.Element {
 
   const formatted = SHORT_BASEURL + props.link.short
-
-  const [openCopied, setOpenCopied] = useState(false)
   const [collapse, setCollapse] = useState(true)
+  // const openCopied = useRef(false)
 
-  function handleCopy(link: string): void {
-    navigator.clipboard.writeText(link)
-    setOpenCopied(true)
+  /**
+   * Callback to handle copying of short link
+   * @param short - Short link to copy
+   */
+  function handleCopy(short: string): void {
+    navigator.clipboard.writeText(short)
+    /* openCopied.current = true
     setTimeout(() => {
-      setOpenCopied(false)
-    }, 700)
+      openCopied.current = false
+    }, 700)*/
   }
 
   /**
@@ -54,16 +57,16 @@ export default function LinkCard(props: {
             {props.link.name} &nbsp;
           </Typography>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <Tooltip
-              open={openCopied}
+            {/*<Tooltip
+              open={openCopied.current}
               disableFocusListener
               disableHoverListener
               placement="top"
               title="Copied!"
               arrow
-            >
+            >*/}
               <Link href={formatted}>{formatted}</Link>
-            </Tooltip>
+            {/*</Tooltip>*/}
             <button
               className="btn-copy"
               onClick={() => handleCopy(formatted)}
