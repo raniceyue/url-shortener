@@ -35,7 +35,9 @@ app.use('/api', BaseRouter)
 // Redirect short links
 app.get('/:short', (req: any, res: any) => {
   getLong(req.params.short)
-    .then(long => { res.status(200).redirect(long) })
+    .then(long => { 
+      res.status(200).redirect(long)
+    })
     .catch(e => {
       res.status(404).sendFile(path.join(__dirname, '../static', '404.html'))
     })
@@ -48,6 +50,7 @@ app.get('/:short', (req: any, res: any) => {
  */
 async function getLong(short: string) {
   let doc : IUrl = await Url.findOne({ short: short })
+  await Url.updateOne({ short: short }, { visited: doc.visited + 1 })
   return doc.long
 }
 
