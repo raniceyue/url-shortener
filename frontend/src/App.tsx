@@ -51,7 +51,8 @@ function App(): JSX.Element {
             let link: IUserLink = {
               name: name,
               short: res.data.data.short,
-              long: ''
+              long: '',
+              visited: res.data.data.visited || 0
             }
             switch(res.status) {
               case 200:
@@ -69,6 +70,11 @@ function App(): JSX.Element {
             }
           }
         })
+
+        fetchedData.sort((a: IUserLink, b: IUserLink) => {
+          return (a.visited && b.visited ? a.visited - b.visited : 0)
+        })
+
         setData(fetchedData)
         setLoading(false)
       })

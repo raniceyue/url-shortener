@@ -80,6 +80,10 @@ export default function LinkCard(props: {
           >
             {props.link.long}
           </Typography>
+          <Typography
+          >
+            Visited: { props.link.visited }  
+          </Typography>
         </CardContent>
       </Paper>
     </Collapse>

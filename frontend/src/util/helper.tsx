@@ -17,6 +17,7 @@ export interface IUserLink extends ILocalLink {
   name: string;
   short: string;
   long?: string;
+  visited?: number;
 }
 
 /**
